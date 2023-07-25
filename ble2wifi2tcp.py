@@ -65,11 +65,11 @@ def getWlanInfo(buf):
     global wlan_info
     if "ssid"==buf:
         wlan_info|=0x1
-        print("ssid sniper_office")
+        print("ssid xxx_office")
     
     if "key"==buf:
         wlan_info|=0x2
-        print("key sniper9017")
+        print("key xxx9017")
     
     if "port"==buf:
         wlan_info|=0x8
@@ -139,7 +139,7 @@ while True:
 # connect wlan
 wlan=network.WLAN(network.STA_IF)
 wlan.active(True)
-wlan.connect('sniper_office', 'sniper9017')
+wlan.connect('xxx_office', 'xxx9017')
 
 for i in range(10):
     if wlan.isconnected():
