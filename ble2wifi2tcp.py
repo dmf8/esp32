@@ -60,33 +60,47 @@ def regServices(ble):
     serv1 = buildService(0xbcde, [char1])
     ble.gatts_register_services([serv1])
 
+def infoAck():
+    led.off()
+    time.sleep(0.5)
+    led.on()
+
 str_ip="192.168.28.185"
 def getWlanInfo(buf):
     global wlan_info
+    global str_ip
     if "ssid"==buf:
         wlan_info|=0x1
         print("ssid xxx_office")
+        infoAck()
     
     if "key"==buf:
         wlan_info|=0x2
         print("key xxx9017")
+        infoAck()
     
     if "port"==buf:
         wlan_info|=0x8
         print("port 4321")
+        infoAck()
     
     if "info"==buf:
         wlan_info|=0xf
+        infoAck()
+        time.sleep(0.5)
+        infoAck()
         
     if "ip"==buf:
         wlan_info|=0x4
         print("ip 192.168.28.185")
+        infoAck()
     else:
         re_ret=re.match("ip\s*(\d+\.\d+\.\d+\.\d+)",buf)
         if re_ret:
             wlan_info|=0x4
             str_ip=re_ret.group(1)
             print(str_ip)
+            infoAck()
     
 
 
