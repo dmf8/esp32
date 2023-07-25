@@ -84,6 +84,7 @@ def getWlanInfo(buf):
     else:
         re_ret=re.match("ip\s*(\d+\.\d+\.\d+\.\d+)",buf)
         if re_ret:
+            wlan_info|=0x4
             str_ip=re_ret.group(1)
             print(str_ip)
     
